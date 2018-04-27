@@ -16,7 +16,7 @@
     "url": "https://github.com/cmloegcmluin/webvr/issues"
   },
   "homepage": "https://github.com/cmloegcmluin/webvr#readme",
-  "devDependencies": {
+  "dependencies": {
     "three-full": "^6.0.0",
     "three-vrcontroller-module": "github:cmloegcmluin/THREE.VRController"
   }
