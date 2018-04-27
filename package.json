@@ -1,0 +1,23 @@
+{
+  "name": "webvr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmloegcmluin/webvr.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cmloegcmluin/webvr/issues"
+  },
+  "homepage": "https://github.com/cmloegcmluin/webvr#readme",
+  "devDependencies": {
+    "three-full": "^6.0.0",
+    "three-vrcontroller-module": "github:cmloegcmluin/THREE.VRController"
+  }
+}
