@@ -1,5 +1,5 @@
 import vrControllers from 'three-vrcontroller-module'
-import webVr from './webVr'
+import vrb from './vrb'
 
 const buildVrControllers = ({player, vrControls}) => {
     vrControllers.controllers = []
@@ -11,7 +11,7 @@ const buildVrControllers = ({player, vrControls}) => {
         controller.meshGeometryIndex = 0
         vrControllers.controllers.push(controller)
 
-        webVr.onControllerConnected(controller)
+        vrb.onControllerConnected(controller)
     })
 
     return vrControllers

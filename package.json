@@ -1,11 +1,25 @@
 {
-  "name": "webvr",
+  "name": "vrb",
   "version": "1.0.1",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cmloegcmluin/webvr.git"
+    "url": "https://github.com/cmloegcmluin/vrb.git"
   },
+  "keywords": [
+    "vr",
+    "virtual reality",
+    "module",
+    "webvr",
+    "web vr",
+    "threejs",
+    "three",
+    "three js",
+    "modular",
+    "vr module",
+    "spatial audio",
+    "vr controllers"
+  ],
   "dependencies": {
     "three-full": "^6.0.0",
     "three-vrcontroller-module": "github:cmloegcmluin/THREE.VRController"

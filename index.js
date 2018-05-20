@@ -1,4 +1,4 @@
-import webVr from './src/webVr'
+import vrb from './src/vrb'
 import attachResizeWindow from './src/attachResizeWindow'
 import attachToggleVr from './src/attachToggleVr'
 import buildAnimate from './src/buildAnimate'
@@ -14,7 +14,7 @@ import buildVrControls from './src/buildVrControls'
 import buildVrEffect from './src/buildVrEffect'
 import CAMERAS_CONFIG_DEFAULTS from './src/camerasConfigDefaults'
 
-const buildWebVr = ({
+const buildVrb = ({
                         camerasConfig: camerasConfigOverrides,
                         scene,
                         toggle,
@@ -24,14 +24,14 @@ const buildWebVr = ({
                         onControllerConnected = () => {
                         },
                     }) => {
-    webVr.onAnimate = onAnimate
-    webVr.changeAnimate = onAnimateChangingFunction => {
-        webVr.onAnimate = onAnimateChangingFunction(webVr.onAnimate)
+    vrb.onAnimate = onAnimate
+    vrb.changeAnimate = onAnimateChangingFunction => {
+        vrb.onAnimate = onAnimateChangingFunction(vrb.onAnimate)
     }
 
-    webVr.onControllerConnected = onControllerConnected
-    webVr.changeOnControllerConnected = onControllerConnectedChangingFunction => {
-        webVr.onControllerConnected = onControllerConnectedChangingFunction(webVr.onControllerConnected)
+    vrb.onControllerConnected = onControllerConnected
+    vrb.changeOnControllerConnected = onControllerConnectedChangingFunction => {
+        vrb.onControllerConnected = onControllerConnectedChangingFunction(vrb.onControllerConnected)
     }
 
     const camerasConfig = Object.assign(CAMERAS_CONFIG_DEFAULTS, camerasConfigOverrides)
@@ -61,16 +61,16 @@ const buildWebVr = ({
     attachToggleVr({cameras, vrEffect, toggle, mouseControls})
     attachResizeWindow({cameras, vrEffect, renderer, camerasConfig})
 
-    webVr.createSpatialOscillator = () => listener.context.createOscillator()
-    webVr.getIsPresenting = () => vrEffect.isPresenting
-    webVr.setPresenting = presenting => vrEffect.isPresenting = presenting
-    webVr.setBackgroundColor = color => renderer.setClearColor(color)
-    webVr.player = player
-    webVr.createPositionalSound = createPositionalSound
-    webVr.requestAnimationFrame = requestAnimationFrame
-    webVr.animate = animate
+    vrb.createSpatialOscillator = () => listener.context.createOscillator()
+    vrb.getIsPresenting = () => vrEffect.isPresenting
+    vrb.setPresenting = presenting => vrEffect.isPresenting = presenting
+    vrb.setBackgroundColor = color => renderer.setClearColor(color)
+    vrb.player = player
+    vrb.createPositionalSound = createPositionalSound
+    vrb.requestAnimationFrame = requestAnimationFrame
+    vrb.animate = animate
 
-    return webVr
+    return vrb
 }
 
-export default buildWebVr
+export default buildVrb
