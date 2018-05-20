@@ -1,3 +1,4 @@
+import webVr from './src/webVr'
 import attachResizeWindow from './src/attachResizeWindow'
 import attachToggleVr from './src/attachToggleVr'
 import buildAnimate from './src/buildAnimate'
@@ -11,9 +12,29 @@ import buildRequestAnimationFrame from './src/buildRequestAnimationFrame'
 import buildVrControllers from './src/buildVrControllers'
 import buildVrControls from './src/buildVrControls'
 import buildVrEffect from './src/buildVrEffect'
+import CAMERAS_CONFIG_DEFAULTS from './src/camerasConfigDefaults'
 
-const webVr = ({camerasConfig, scene, onControllerConnected, toggle, viewer, onAnimate}) => {
-    const webVr = {}
+const buildWebVr = ({
+                        camerasConfig: camerasConfigOverrides,
+                        scene,
+                        toggle,
+                        viewer,
+                        onAnimate = () => {
+                        },
+                        onControllerConnected = () => {
+                        },
+                    }) => {
+    webVr.onAnimate = onAnimate
+    webVr.changeAnimate = onAnimateChangingFunction => {
+        webVr.onAnimate = onAnimateChangingFunction(webVr.onAnimate)
+    }
+
+    webVr.onControllerConnected = onControllerConnected
+    webVr.changeOnControllerConnected = onControllerConnectedChangingFunction => {
+        webVr.onControllerConnected = onControllerConnectedChangingFunction(webVr.onControllerConnected)
+    }
+
+    const camerasConfig = Object.assign(CAMERAS_CONFIG_DEFAULTS, camerasConfigOverrides)
 
     const renderer = buildRenderer({viewer})
     const vrEffect = buildVrEffect({renderer})
@@ -25,7 +46,7 @@ const webVr = ({camerasConfig, scene, onControllerConnected, toggle, viewer, onA
     const createPositionalSound = buildCreatePositionalSound({listener})
     const vrControls = buildVrControls({perspectiveCamera})
     const mouseControls = buildMouseControls({renderer, cameras})
-    const vrControllers = buildVrControllers({player, vrControls, onControllerConnected})
+    const vrControllers = buildVrControllers({player, vrControls})
     const animate = buildAnimate({
         renderer,
         scene,
@@ -34,7 +55,6 @@ const webVr = ({camerasConfig, scene, onControllerConnected, toggle, viewer, onA
         vrControllers,
         vrEffect,
         cameras,
-        onAnimate,
     })
     const requestAnimationFrame = buildRequestAnimationFrame({vrEffect, animate})
 
@@ -42,7 +62,7 @@ const webVr = ({camerasConfig, scene, onControllerConnected, toggle, viewer, onA
     attachResizeWindow({cameras, vrEffect, renderer, camerasConfig})
 
     webVr.createSpatialOscillator = () => listener.context.createOscillator()
-    webVr.isPresenting = () => vrEffect.isPresenting
+    webVr.getIsPresenting = () => vrEffect.isPresenting
     webVr.setPresenting = presenting => vrEffect.isPresenting = presenting
     webVr.setBackgroundColor = color => renderer.setClearColor(color)
     webVr.player = player
@@ -53,4 +73,4 @@ const webVr = ({camerasConfig, scene, onControllerConnected, toggle, viewer, onA
     return webVr
 }
 
-export default webVr
+export default buildWebVr

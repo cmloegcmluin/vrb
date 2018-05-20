@@ -1,6 +1,7 @@
 import vrControllers from 'three-vrcontroller-module'
+import webVr from './webVr'
 
-const buildVrControllers = ({player, vrControls, onControllerConnected}) => {
+const buildVrControllers = ({player, vrControls}) => {
     vrControllers.controllers = []
 
     window.addEventListener('vr controller connected', event => {
@@ -10,7 +11,7 @@ const buildVrControllers = ({player, vrControls, onControllerConnected}) => {
         controller.meshGeometryIndex = 0
         vrControllers.controllers.push(controller)
 
-        onControllerConnected(controller)
+        webVr.onControllerConnected(controller)
     })
 
     return vrControllers

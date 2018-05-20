@@ -1,3 +1,5 @@
+import webVr from './webVr'
+
 const buildAnimate = ({
                           renderer,
                           scene,
@@ -7,10 +9,9 @@ const buildAnimate = ({
                           vrControllers,
                           vrEffect,
                           cameras,
-                          onAnimate,
                       }) => {
     const animate = () => {
-        onAnimate()
+        webVr.onAnimate()
         mouseControls.update()
 
         if (vrEffect.isPresenting) {
