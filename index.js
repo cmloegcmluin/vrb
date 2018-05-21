@@ -25,7 +25,7 @@ const buildVrb = ({
                         },
                     }) => {
     vrb.onAnimate = onAnimate
-    vrb.changeAnimate = onAnimateChangingFunction => {
+    vrb.changeOnAnimate = onAnimateChangingFunction => {
         vrb.onAnimate = onAnimateChangingFunction(vrb.onAnimate)
     }
 
@@ -63,12 +63,10 @@ const buildVrb = ({
 
     vrb.createSpatialOscillator = () => listener.context.createOscillator()
     vrb.getIsPresenting = () => vrEffect.isPresenting
-    vrb.setPresenting = presenting => vrEffect.isPresenting = presenting
     vrb.setBackgroundColor = color => renderer.setClearColor(color)
     vrb.player = player
     vrb.createPositionalSound = createPositionalSound
     vrb.requestAnimationFrame = requestAnimationFrame
-    vrb.animate = animate
 
     return vrb
 }

@@ -22,6 +22,6 @@
   ],
   "dependencies": {
     "three-full": "^6.0.0",
-    "three-vrcontroller-module": "github:cmloegcmluin/THREE.VRController"
+    "three-vrcontroller-module": "^1.0.0"
   }
 }
