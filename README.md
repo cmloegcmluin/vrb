@@ -1,6 +1,6 @@
 # vrb
 
-[![NPM version](https://www.npmjs.com/package/vrb)](https://www.npmjs.com/package/vrb)
+[![npm version](https://badge.fury.io/js/vrb.svg)](https://badge.fury.io/js/vrb)
 
 **vrb** *(ˈvɚb , ˌvi ɑr ˈbi)*, v.: to verb VR; to virtually really be.
 
