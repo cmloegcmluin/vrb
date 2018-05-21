@@ -6,6 +6,10 @@ Simple three.js-based web VR module. Supports positional audio and VR controller
 
 Opens in an orthographic view of the scene. Click a toggle to enter in and out of a perspective VR mode.
 
+## install
+
+`npm i vrb`
+
 ## usage
 
 ```
