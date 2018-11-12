@@ -18,7 +18,7 @@ const attachToggleVr = ({cameras, vrEffect, toggle, mouseControls}) => {
     if (toggle) {
         toggle.onclick = toggleVr
     } else {
-        enterPresent()
+        setTimeout(enterPresent, 1000)
     }
 }
 
