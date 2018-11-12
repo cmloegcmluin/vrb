@@ -7,7 +7,7 @@ const buildRenderer = ({viewer}) => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, DEFAULT_PIXEL_RATIO))
     renderer.setSize(window.innerWidth, window.innerHeight)
 
-    viewer.appendChild(renderer.domElement)
+    viewer && viewer.appendChild(renderer.domElement)
 
     return renderer
 }

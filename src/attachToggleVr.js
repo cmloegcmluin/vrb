@@ -15,7 +15,11 @@ const attachToggleVr = ({cameras, vrEffect, toggle, mouseControls}) => {
         cameras.currentCamera = cameras.perspectiveCamera
     }
 
-    toggle.onclick = toggleVr
+    if (toggle) {
+        toggle.onclick = toggleVr
+    } else {
+        enterPresent()
+    }
 }
 
 export default attachToggleVr
