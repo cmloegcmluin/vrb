@@ -1,4 +1,4 @@
-const vrb = require('./vrb')
+import vrb from './vrb'
 
 const buildAnimate = ({
                           renderer,
@@ -25,4 +25,4 @@ const buildAnimate = ({
     return animate
 }
 
-module.exports = buildAnimate
+export default buildAnimate

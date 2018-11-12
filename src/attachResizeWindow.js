@@ -1,4 +1,4 @@
-const attachResizeWindow = ({cameras, vrEffect, renderer, camerasConfig}) => {
+const attachResizeWindow = ({ cameras, vrEffect, renderer, camerasConfig }) => {
     const resizeWindow = () => {
         cameras.orthographicCamera.left = -camerasConfig.ORTHOGRAPHIC_FRUSTUM_LEFT
         cameras.orthographicCamera.right = camerasConfig.ORTHOGRAPHIC_FRUSTUM_RIGHT
@@ -17,4 +17,4 @@ const attachResizeWindow = ({cameras, vrEffect, renderer, camerasConfig}) => {
     window.addEventListener('resize', resizeWindow)
 }
 
-module.exports = attachResizeWindow
+export default attachResizeWindow

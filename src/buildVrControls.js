@@ -1,4 +1,4 @@
-const {VRControls} = require('three-full')
+import {VRControls} from 'three-full'
 
 const buildVrControls = ({perspectiveCamera}) => {
     const vrControls = new VRControls(perspectiveCamera)
@@ -7,4 +7,4 @@ const buildVrControls = ({perspectiveCamera}) => {
     return vrControls
 }
 
-module.exports = buildVrControls
+export default buildVrControls

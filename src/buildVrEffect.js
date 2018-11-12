@@ -1,4 +1,4 @@
-const {VREffect} = require('three-full')
+import {VREffect} from 'three-full'
 
 const buildVrEffect = ({renderer}) => {
     const vrEffect = new VREffect(renderer)
@@ -6,4 +6,4 @@ const buildVrEffect = ({renderer}) => {
     return vrEffect
 }
 
-module.exports = buildVrEffect
+export default buildVrEffect

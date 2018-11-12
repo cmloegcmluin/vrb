@@ -1,4 +1,4 @@
-const {OrbitControls} = require('three-full')
+import {OrbitControls} from 'three-full'
 
 const buildMouseControls = ({renderer, cameras}) => {
     const mouseControls = new OrbitControls(cameras.orthographicCamera, renderer.domElement)
@@ -9,4 +9,4 @@ const buildMouseControls = ({renderer, cameras}) => {
     return mouseControls
 }
 
-module.exports = buildMouseControls
+export default buildMouseControls

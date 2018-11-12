@@ -1,4 +1,4 @@
-const {Object3D} = require('three-full')
+import {Object3D} from 'three-full'
 
 const buildPlayer = ({scene, perspectiveCamera, camerasConfig}) => {
     const player = new Object3D()
@@ -11,4 +11,4 @@ const buildPlayer = ({scene, perspectiveCamera, camerasConfig}) => {
     return player
 }
 
-module.exports = buildPlayer
+export default buildPlayer

@@ -1,18 +1,18 @@
-const vrb = require('./src/vrb')
-const attachResizeWindow = require('./src/attachResizeWindow')
-const attachToggleVr = require('./src/attachToggleVr')
-const buildAnimate = require('./src/buildAnimate')
-const buildCameras = require('./src/buildCameras')
-const buildCreatePositionalSound = require('./src/buildCreatePositionalSound')
-const buildListener = require('./src/buildListener')
-const buildMouseControls = require('./src/buildMouseControls')
-const buildPlayer = require('./src/buildPlayer')
-const buildRenderer = require('./src/buildRenderer')
-const buildRequestAnimationFrame = require('./src/buildRequestAnimationFrame')
-const buildVrControllers = require('./src/buildVrControllers')
-const buildVrControls = require('./src/buildVrControls')
-const buildVrEffect = require('./src/buildVrEffect')
-const CAMERAS_CONFIG_DEFAULTS = require('./src/camerasConfigDefaults')
+import vrb from './src/vrb'
+import attachResizeWindow from './src/attachResizeWindow'
+import attachToggleVr from './src/attachToggleVr'
+import buildAnimate from './src/buildAnimate'
+import buildCameras from './src/buildCameras'
+import buildCreatePositionalSound from './src/buildCreatePositionalSound'
+import buildListener from './src/buildListener'
+import buildMouseControls from './src/buildMouseControls'
+import buildPlayer from './src/buildPlayer'
+import buildRenderer from './src/buildRenderer'
+import buildRequestAnimationFrame from './src/buildRequestAnimationFrame'
+import buildVrControllers from './src/buildVrControllers'
+import buildVrControls from './src/buildVrControls'
+import buildVrEffect from './src/buildVrEffect'
+import CAMERAS_CONFIG_DEFAULTS from './src/camerasConfigDefaults'
 
 const buildVrb = ({
                         camerasConfig: camerasConfigOverrides,
@@ -73,4 +73,4 @@ const buildVrb = ({
     return vrb
 }
 
-module.exports = buildVrb
+export default buildVrb

@@ -1,4 +1,4 @@
-const {WebGLRenderer} = require('three-full')
+import {WebGLRenderer} from 'three-full'
 
 const DEFAULT_PIXEL_RATIO = 4
 
@@ -12,4 +12,4 @@ const buildRenderer = ({viewer}) => {
     return renderer
 }
 
-module.exports = buildRenderer
+export default buildRenderer

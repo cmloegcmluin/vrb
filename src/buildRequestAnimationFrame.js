@@ -7,4 +7,4 @@ const buildRequestAnimationFrame = ({vrEffect, animate}) => {
     return requestAnimationFrame
 }
 
-module.exports = buildRequestAnimationFrame
+export default buildRequestAnimationFrame
