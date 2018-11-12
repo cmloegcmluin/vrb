@@ -1,4 +1,4 @@
-import {AudioListener} from 'three-full'
+const {AudioListener} = require('three-full')
 
 const buildListener = ({perspectiveCamera}) => {
     const listener = new AudioListener()
@@ -7,4 +7,4 @@ const buildListener = ({perspectiveCamera}) => {
     return listener
 }
 
-export default buildListener
+module.exports = buildListener

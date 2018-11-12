@@ -1,4 +1,4 @@
-import {PositionalAudio} from 'three-full'
+const {PositionalAudio} = require('three-full')
 
 const buildCreatePositionalSound = ({listener}) => {
     const createPositionalSound = () => {
@@ -14,4 +14,4 @@ const buildCreatePositionalSound = ({listener}) => {
     return createPositionalSound
 }
 
-export default buildCreatePositionalSound
+module.exports = buildCreatePositionalSound

@@ -22,4 +22,4 @@ const attachToggleVr = ({cameras, vrEffect, toggle, mouseControls}) => {
     }
 }
 
-export default attachToggleVr
+module.exports = attachToggleVr

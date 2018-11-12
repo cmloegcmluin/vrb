@@ -1,5 +1,5 @@
-import vrControllers from 'three-vrcontroller-module'
-import vrb from './vrb'
+const vrControllers = require('three-vrcontroller-module')
+const vrb = require('./vrb')
 
 const buildVrControllers = ({player, vrControls}) => {
     vrControllers.controllers = []
@@ -17,4 +17,4 @@ const buildVrControllers = ({player, vrControls}) => {
     return vrControllers
 }
 
-export default buildVrControllers
+module.exports = buildVrControllers

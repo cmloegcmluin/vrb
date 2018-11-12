@@ -1,4 +1,4 @@
-import {OrthographicCamera, PerspectiveCamera} from 'three-full'
+const {OrthographicCamera, PerspectiveCamera} = require('three-full')
 
 const buildCameras = ({camerasConfig}) => {
     const perspectiveCamera = new PerspectiveCamera(
@@ -30,4 +30,4 @@ const buildCameras = ({camerasConfig}) => {
     }
 }
 
-export default buildCameras
+module.exports = buildCameras

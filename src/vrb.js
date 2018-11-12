@@ -1,3 +1,3 @@
 const vrb = {}
 
-export default vrb
+module.exports = vrb
