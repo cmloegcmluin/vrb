@@ -68,6 +68,7 @@ const buildVrb = ({
     vrb.createPositionalSound = createPositionalSound
     vrb.requestAnimationFrame = requestAnimationFrame
     vrb.listener = listener
+    vrb.scene = scene
 
     return vrb
 }
