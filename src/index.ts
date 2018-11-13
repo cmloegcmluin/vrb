@@ -22,7 +22,7 @@ import {
     PerspectiveCamera,
     PositionalAudio, Renderer,
     Scene, VRControls, VREffect,
-} from 'three'
+} from 'three-full'
 
 export interface AttachResizeWindowParameters {
     cameras: Cameras,
