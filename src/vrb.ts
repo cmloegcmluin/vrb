@@ -1,4 +1,4 @@
-import { Vrb } from '../index'
+import { Vrb } from './index'
 
 const vrb: Partial<Vrb> = {}
 

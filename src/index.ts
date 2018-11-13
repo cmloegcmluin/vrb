@@ -1,18 +1,18 @@
-import vrb from './src/vrb'
-import attachResizeWindow from './src/attachResizeWindow'
-import attachToggleVr from './src/attachToggleVr'
-import buildAnimate from './src/buildAnimate'
-import buildCameras from './src/buildCameras'
-import buildCreatePositionalSound from './src/buildCreatePositionalSound'
-import buildListener from './src/buildListener'
-import buildMouseControls from './src/buildMouseControls'
-import buildPlayer from './src/buildPlayer'
-import buildRenderer from './src/buildRenderer'
-import buildRequestAnimationFrame from './src/buildRequestAnimationFrame'
-import buildVrControllers from './src/buildVrControllers'
-import buildVrControls from './src/buildVrControls'
-import buildVrEffect from './src/buildVrEffect'
-import CAMERAS_CONFIG_DEFAULTS, { CamerasConfig } from './src/camerasConfigDefaults'
+import vrb from './vrb'
+import attachResizeWindow from './attachResizeWindow'
+import attachToggleVr from './attachToggleVr'
+import buildAnimate from './buildAnimate'
+import buildCameras from './buildCameras'
+import buildCreatePositionalSound from './buildCreatePositionalSound'
+import buildListener from './buildListener'
+import buildMouseControls from './buildMouseControls'
+import buildPlayer from './buildPlayer'
+import buildRenderer from './buildRenderer'
+import buildRequestAnimationFrame from './buildRequestAnimationFrame'
+import buildVrControllers from './buildVrControllers'
+import buildVrControls from './buildVrControls'
+import buildVrEffect from './buildVrEffect'
+import CAMERAS_CONFIG_DEFAULTS, { CamerasConfig } from './camerasConfigDefaults'
 import { AudioListener, Color, Object3D, PositionalAudio, Scene } from 'three'
 
 export interface Vrb {
@@ -42,7 +42,7 @@ export interface BuildVrbParameters {
 const noop: VoidFunction = () => {
 }
 
-const buildVrb: (buildVrbParameters: BuildVrbParameters) => Partial<Vrb> =
+const buildVrb: (buildVrbParameters: BuildVrbParameters) => Vrb =
     ({
          camerasConfig: camerasConfigOverrides,
          scene,
@@ -52,7 +52,7 @@ const buildVrb: (buildVrbParameters: BuildVrbParameters) => Partial<Vrb> =
          },
          onControllerConnected = () => {
          },
-     }: BuildVrbParameters): Partial<Vrb> => {
+     }: BuildVrbParameters): Vrb => {
         vrb.scene = scene || new Scene()
         vrb.onAnimate = onAnimate || noop
         vrb.changeOnAnimate = onAnimateChangingFunction => {
@@ -100,7 +100,7 @@ const buildVrb: (buildVrbParameters: BuildVrbParameters) => Partial<Vrb> =
         vrb.requestAnimationFrame = requestAnimationFrame
         vrb.listener = listener
 
-        return vrb
+        return vrb as Vrb
     }
 
 export default buildVrb
