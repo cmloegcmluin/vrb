@@ -19,7 +19,7 @@
       "three-full": [
         "node_modules/@types/three"
       ]
-    }
-  },
-  "declaration": true
+    },
+    "declaration": true
+  }
 }
