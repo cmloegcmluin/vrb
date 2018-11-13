@@ -160,7 +160,9 @@ export interface BuildVrbParameters {
 const noop: VoidFunction = () => {
 }
 
-const buildVrb: (buildVrbParameters: BuildVrbParameters) => Vrb = (
+export type BuildVrb = (buildVrbParameters: BuildVrbParameters) => Vrb
+
+const buildVrb: BuildVrb = (
     {
         camerasConfig: camerasConfigOverrides,
         scene,
