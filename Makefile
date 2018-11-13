@@ -1,2 +1,2 @@
 make deploy:
-	npm run build && npm publish
+	npm i && npm run build && npm publish
