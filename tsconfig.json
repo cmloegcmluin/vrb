@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "es5",
+    "outDir": "dist",
+    "downlevelIteration": true,
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "noImplicitReturns": true,
+    "strict": true,
+    "pretty": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "three-full": [
+        "node_modules/@types/three"
+      ]
+    }
+  },
+  "declaration": true
+}
