@@ -1,10 +1,7 @@
-import {AudioListener, PositionalAudio} from 'three-full'
+import { PositionalAudio } from 'three-full'
+import { BuildCreatePositionalSoundParameters } from './index'
 
-export interface BuildCreatePositionalSoundParameters {
-    listener: AudioListener,
-}
-
-const buildCreatePositionalSound = ({listener}: BuildCreatePositionalSoundParameters): () => PositionalAudio => {
+const buildCreatePositionalSound = ({ listener }: BuildCreatePositionalSoundParameters): () => PositionalAudio => {
     const createPositionalSound = () => {
         const positionalSound = new PositionalAudio(listener)
         positionalSound.setVolume(0)

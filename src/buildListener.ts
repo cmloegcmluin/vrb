@@ -1,8 +1,5 @@
-import { AudioListener, PerspectiveCamera } from 'three-full'
-
-export interface BuildListenerParameters {
-    perspectiveCamera: PerspectiveCamera,
-}
+import { AudioListener } from 'three-full'
+import { BuildListenerParameters } from './index'
 
 const buildListener = ({perspectiveCamera}: BuildListenerParameters) => {
     const listener = new AudioListener()

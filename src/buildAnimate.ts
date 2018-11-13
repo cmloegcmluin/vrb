@@ -1,19 +1,5 @@
 import vrb from './vrb'
-import { OrbitControls, Scene } from 'three-full'
-import { VrbVREffect } from './buildVrEffect'
-import { Cameras } from './buildCameras'
-import { VrbVRControls } from './buildVrControls'
-import { VrbRenderer } from './buildRenderer'
-
-export interface BuildAnimateParameters {
-    renderer: VrbRenderer,
-    scene: Scene,
-    mouseControls: OrbitControls,
-    vrControls: VrbVRControls,
-    vrControllers: any,
-    vrEffect: VrbVREffect,
-    cameras: Cameras,
-}
+import { BuildAnimateParameters } from './index'
 
 const buildAnimate = ({
                           renderer,

@@ -1,17 +1,5 @@
 import { VREffect } from 'three-full'
-import { VrbRenderer } from './buildRenderer'
-
-export interface VrbVREffect extends VREffect {
-    getVRDisplay: () => string,
-    exitPresent: () => Promise<void>,
-    requestPresent: () => Promise<void>,
-    isPresenting: boolean,
-    requestAnimationFrame: (requestAnimationFrame: VoidFunction) => void,
-}
-
-export interface BuildVrEffectParameters {
-    renderer: VrbRenderer,
-}
+import { BuildVrEffectParameters, VrbVREffect } from './index'
 
 const buildVrEffect = ({renderer}: BuildVrEffectParameters): VrbVREffect => {
     const vrEffect = new VREffect(renderer) as VrbVREffect

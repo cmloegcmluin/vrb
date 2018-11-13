@@ -1,11 +1,5 @@
-import { Object3D, PerspectiveCamera, Scene } from 'three-full'
-import { CamerasConfig } from './camerasConfigDefaults'
-
-export interface BuildPlayerParameters {
-    scene: Scene,
-    perspectiveCamera: PerspectiveCamera,
-    camerasConfig: Partial<CamerasConfig>,
-}
+import { Object3D } from 'three-full'
+import { BuildPlayerParameters } from './index'
 
 const buildPlayer = ({scene, perspectiveCamera, camerasConfig}: BuildPlayerParameters): Object3D => {
     const player = new Object3D()

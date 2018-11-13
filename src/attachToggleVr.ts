@@ -1,13 +1,4 @@
-import { Cameras } from './buildCameras'
-import { VrbVREffect } from './buildVrEffect'
-import { OrbitControls } from 'three-full'
-
-export interface AttachToggleVrParameters {
-    cameras: Cameras,
-    vrEffect: VrbVREffect,
-    toggle?: HTMLDivElement,
-    mouseControls: OrbitControls,
-}
+import { AttachToggleVrParameters } from './index'
 
 const attachToggleVr = ({cameras, vrEffect, toggle, mouseControls}: AttachToggleVrParameters): void => {
     const toggleVr = () => cameras.currentCamera === cameras.perspectiveCamera ? exitPresent() : enterPresent()

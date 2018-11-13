@@ -1,13 +1,7 @@
 // @ts-ignore
 import vrControllers from 'three-vrcontroller-module'
 import vrb from './vrb'
-import { Object3D } from 'three-full'
-import { VrbVRControls } from './buildVrControls'
-
-interface BuildVrControllersParameters {
-    player: Object3D,
-    vrControls: VrbVRControls,
-}
+import { BuildVrControllersParameters } from './index'
 
 const buildVrControllers = ({player, vrControls}: BuildVrControllersParameters): any => {
     vrControllers.controllers = []

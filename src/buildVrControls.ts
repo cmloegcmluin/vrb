@@ -1,13 +1,5 @@
-import { PerspectiveCamera, VRControls } from 'three-full'
-
-export interface BuildVrControlsParameters {
-    perspectiveCamera: PerspectiveCamera,
-}
-
-export interface VrbVRControls extends VRControls {
-    standing: boolean,
-    getStandingMatrix: () => string,
-}
+import { VRControls } from 'three-full'
+import { BuildVrControlsParameters, VrbVRControls } from './index'
 
 const buildVrControls = ({perspectiveCamera}: BuildVrControlsParameters): VrbVRControls => {
     const vrControls = new VRControls(perspectiveCamera) as VrbVRControls

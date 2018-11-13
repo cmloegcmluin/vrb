@@ -1,15 +1,5 @@
 import {OrthographicCamera, PerspectiveCamera} from 'three-full'
-import { CamerasConfig } from './camerasConfigDefaults'
-
-export interface Cameras {
-    perspectiveCamera: PerspectiveCamera,
-    orthographicCamera: OrthographicCamera,
-    currentCamera: PerspectiveCamera | OrthographicCamera,
-}
-
-export interface BuildCamerasParameters {
-    camerasConfig: Partial<CamerasConfig>,
-}
+import { BuildCamerasParameters, Cameras } from './index'
 
 const buildCameras = ({camerasConfig}: BuildCamerasParameters): Cameras => {
     const perspectiveCamera = new PerspectiveCamera(

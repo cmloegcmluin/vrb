@@ -1,14 +1,7 @@
-import { Color, Renderer, WebGLRenderer } from 'three-full'
+import { WebGLRenderer } from 'three-full'
+import { BuildRendererParameters, VrbRenderer } from './index'
 
 const DEFAULT_PIXEL_RATIO = 4
-
-export interface BuildRendererParameters {
-    viewer?: HTMLDivElement,
-}
-
-export interface VrbRenderer extends Renderer {
-    setClearColor: (color: Color) => void,
-}
 
 const buildRenderer = ({viewer}: BuildRendererParameters): VrbRenderer => {
     const renderer = new WebGLRenderer({antialias: true})

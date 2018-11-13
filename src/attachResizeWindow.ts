@@ -1,14 +1,4 @@
-import { Cameras } from './buildCameras'
-import { VrbVREffect } from './buildVrEffect'
-import { VrbRenderer } from './buildRenderer'
-import { CamerasConfig } from './camerasConfigDefaults'
-
-export interface AttachResizeWindowParameters {
-    cameras: Cameras,
-    vrEffect: VrbVREffect,
-    renderer: VrbRenderer,
-    camerasConfig: CamerasConfig,
-}
+import { AttachResizeWindowParameters } from './index'
 
 const attachResizeWindow = ({ cameras, vrEffect, renderer, camerasConfig }: AttachResizeWindowParameters): void => {
     const resizeWindow = () => {

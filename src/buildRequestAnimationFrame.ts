@@ -1,9 +1,4 @@
-import { VrbVREffect } from './buildVrEffect'
-
-export interface BuildRequestAnimationFrameParameters {
-    vrEffect: VrbVREffect,
-    animate: VoidFunction,
-}
+import { BuildRequestAnimationFrameParameters } from './index'
 
 const buildRequestAnimationFrame = ({vrEffect, animate}: BuildRequestAnimationFrameParameters): VoidFunction => {
     const requestAnimationFrame = () => {
