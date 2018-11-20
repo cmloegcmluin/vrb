@@ -1,9 +1,9 @@
 // @ts-ignore
 import vrControllers from 'three-vrcontroller-module'
 import vrb from './vrb'
-import { BuildVrControllersParameters } from './index'
+import { BuildVrControllersParameters } from './types'
 
-const buildVrControllers = ({player, vrControls}: BuildVrControllersParameters): any => {
+const buildVrControllers = ({ player, vrControls }: BuildVrControllersParameters): any => {
     vrControllers.controllers = []
 
     window.addEventListener('vr controller connected', event => {
@@ -20,4 +20,6 @@ const buildVrControllers = ({player, vrControls}: BuildVrControllersParameters):
     return vrControllers
 }
 
-export default buildVrControllers
+export {
+    buildVrControllers,
+}

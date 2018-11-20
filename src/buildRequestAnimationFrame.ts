@@ -1,6 +1,6 @@
-import { BuildRequestAnimationFrameParameters } from './index'
+import { BuildRequestAnimationFrameParameters } from './types'
 
-const buildRequestAnimationFrame = ({vrEffect, animate}: BuildRequestAnimationFrameParameters): VoidFunction => {
+const buildRequestAnimationFrame = ({ vrEffect, animate }: BuildRequestAnimationFrameParameters): VoidFunction => {
     const requestAnimationFrame = () => {
         vrEffect.requestAnimationFrame(requestAnimationFrame)
         animate()
@@ -9,4 +9,6 @@ const buildRequestAnimationFrame = ({vrEffect, animate}: BuildRequestAnimationFr
     return requestAnimationFrame
 }
 
-export default buildRequestAnimationFrame
+export {
+    buildRequestAnimationFrame,
+}

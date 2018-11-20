@@ -1,5 +1,5 @@
 import { PositionalAudio } from 'three-full'
-import { BuildCreatePositionalSoundParameters } from './index'
+import { BuildCreatePositionalSoundParameters } from './types'
 
 const buildCreatePositionalSound = ({ listener }: BuildCreatePositionalSoundParameters): () => PositionalAudio => {
     const createPositionalSound = () => {
@@ -17,4 +17,6 @@ const buildCreatePositionalSound = ({ listener }: BuildCreatePositionalSoundPara
     return createPositionalSound
 }
 
-export default buildCreatePositionalSound
+export {
+    buildCreatePositionalSound,
+}

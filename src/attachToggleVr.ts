@@ -1,6 +1,6 @@
-import { AttachToggleVrParameters } from './index'
+import { AttachToggleVrParameters } from './types'
 
-const attachToggleVr = ({cameras, vrEffect, toggle, mouseControls}: AttachToggleVrParameters): void => {
+const attachToggleVr = ({ cameras, vrEffect, toggle, mouseControls }: AttachToggleVrParameters): void => {
     const toggleVr = () => cameras.currentCamera === cameras.perspectiveCamera ? exitPresent() : enterPresent()
 
     const exitPresent = () => {
@@ -24,4 +24,6 @@ const attachToggleVr = ({cameras, vrEffect, toggle, mouseControls}: AttachToggle
     }
 }
 
-export default attachToggleVr
+export {
+    attachToggleVr,
+}

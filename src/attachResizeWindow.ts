@@ -1,4 +1,4 @@
-import { AttachResizeWindowParameters } from './index'
+import { AttachResizeWindowParameters } from './types'
 
 const attachResizeWindow = ({ cameras, vrEffect, renderer, camerasConfig }: AttachResizeWindowParameters): void => {
     const resizeWindow = () => {
@@ -19,4 +19,6 @@ const attachResizeWindow = ({ cameras, vrEffect, renderer, camerasConfig }: Atta
     window.addEventListener('resize', resizeWindow)
 }
 
-export default attachResizeWindow
+export {
+    attachResizeWindow,
+}

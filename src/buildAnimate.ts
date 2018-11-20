@@ -1,5 +1,5 @@
 import vrb from './vrb'
-import { BuildAnimateParameters } from './index'
+import { BuildAnimateParameters } from './types'
 
 const buildAnimate = ({
                           renderer,
@@ -9,7 +9,7 @@ const buildAnimate = ({
                           vrControllers,
                           vrEffect,
                           cameras,
-                      } : BuildAnimateParameters): VoidFunction => {
+                      }: BuildAnimateParameters): VoidFunction => {
     const animate = () => {
         vrb.onAnimate && vrb.onAnimate()
         mouseControls.update()
@@ -25,4 +25,6 @@ const buildAnimate = ({
     return animate
 }
 
-export default buildAnimate
+export {
+    buildAnimate,
+}

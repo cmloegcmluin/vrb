@@ -1,5 +1,5 @@
 import {OrthographicCamera, PerspectiveCamera} from 'three-full'
-import { BuildCamerasParameters, Cameras } from './index'
+import { BuildCamerasParameters, Cameras } from './types'
 
 const buildCameras = ({camerasConfig}: BuildCamerasParameters): Cameras => {
     const perspectiveCamera = new PerspectiveCamera(
@@ -34,4 +34,6 @@ const buildCameras = ({camerasConfig}: BuildCamerasParameters): Cameras => {
     }
 }
 
-export default buildCameras
+export {
+    buildCameras,
+}

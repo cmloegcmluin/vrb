@@ -1,10 +1,10 @@
 import { WebGLRenderer } from 'three-full'
-import { BuildRendererParameters, VrbRenderer } from './index'
+import { BuildRendererParameters, VrbRenderer } from './types'
 
 const DEFAULT_PIXEL_RATIO = 4
 
-const buildRenderer = ({viewer}: BuildRendererParameters): VrbRenderer => {
-    const renderer = new WebGLRenderer({antialias: true})
+const buildRenderer = ({ viewer }: BuildRendererParameters): VrbRenderer => {
+    const renderer = new WebGLRenderer({ antialias: true })
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, DEFAULT_PIXEL_RATIO))
     renderer.setSize(window.innerWidth, window.innerHeight)
 
@@ -13,4 +13,6 @@ const buildRenderer = ({viewer}: BuildRendererParameters): VrbRenderer => {
     return renderer
 }
 
-export default buildRenderer
+export {
+    buildRenderer,
+}

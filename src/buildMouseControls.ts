@@ -1,7 +1,7 @@
 import { OrbitControls } from 'three-full'
-import { BuildMouseControlsParameters } from './index'
+import { BuildMouseControlsParameters } from './types'
 
-const buildMouseControls = ({renderer, cameras}: BuildMouseControlsParameters): OrbitControls => {
+const buildMouseControls = ({ renderer, cameras }: BuildMouseControlsParameters): OrbitControls => {
     const mouseControls = new OrbitControls(cameras.orthographicCamera, renderer.domElement)
     mouseControls.enableDamping = true
     mouseControls.dampingFactor = 0.1
@@ -10,4 +10,6 @@ const buildMouseControls = ({renderer, cameras}: BuildMouseControlsParameters): 
     return mouseControls
 }
 
-export default buildMouseControls
+export {
+    buildMouseControls,
+}

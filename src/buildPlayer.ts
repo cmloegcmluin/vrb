@@ -1,7 +1,7 @@
 import { Object3D } from 'three-full'
-import { BuildPlayerParameters } from './index'
+import { BuildPlayerParameters } from './types'
 
-const buildPlayer = ({scene, perspectiveCamera, camerasConfig}: BuildPlayerParameters): Object3D => {
+const buildPlayer = ({ scene, perspectiveCamera, camerasConfig }: BuildPlayerParameters): Object3D => {
     const player = new Object3D()
     player.add(perspectiveCamera)
     scene.add(player)
@@ -14,4 +14,6 @@ const buildPlayer = ({scene, perspectiveCamera, camerasConfig}: BuildPlayerParam
     return player
 }
 
-export default buildPlayer
+export {
+    buildPlayer,
+}
