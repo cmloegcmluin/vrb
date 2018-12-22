@@ -47,10 +47,10 @@ const buildVrb: BuildVrb = (
 
     const renderer = buildRenderer({ viewer })
     const vrEffect = buildVrEffect({ renderer })
-    const cameras = buildCameras({ camerasConfig })
+    const cameras = buildCameras({ scene, camerasConfig })
     const perspectiveCamera = cameras.perspectiveCamera
 
-    const player = buildPlayer({ scene: vrb.scene, perspectiveCamera, camerasConfig })
+    const player = buildPlayer({ scene, perspectiveCamera, camerasConfig })
     const listener = buildListener({ perspectiveCamera })
     const createPositionalSound = buildCreatePositionalSound({ listener })
     const vrControls = buildVrControls({ perspectiveCamera })
@@ -58,7 +58,7 @@ const buildVrb: BuildVrb = (
     const vrControllers = buildVrControllers({ player, vrControls })
     const animate = buildAnimate({
         renderer,
-        scene: vrb.scene,
+        scene,
         mouseControls,
         vrControls,
         vrControllers,

@@ -43,6 +43,7 @@ interface Cameras {
 }
 
 interface BuildCamerasParameters {
+    scene: Scene,
     camerasConfig: Partial<CamerasConfig>,
 }
 

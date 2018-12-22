@@ -1,7 +1,7 @@
 import {OrthographicCamera, PerspectiveCamera} from 'three-full'
 import { BuildCamerasParameters, Cameras } from './types'
 
-const buildCameras = ({camerasConfig}: BuildCamerasParameters): Cameras => {
+const buildCameras = ({scene, camerasConfig}: BuildCamerasParameters): Cameras => {
     const perspectiveCamera = new PerspectiveCamera(
         camerasConfig.PERSPECTIVE_FOV as number,
         camerasConfig.PERSPECTIVE_ASPECT_RATIO as number,
@@ -26,6 +26,9 @@ const buildCameras = ({camerasConfig}: BuildCamerasParameters): Cameras => {
     orthographicCamera.position.set(...camerasConfig.INITIAL_ORTHOGRAPHIC_POSITION)
     // @ts-ignore
     orthographicCamera.lookAt(...camerasConfig.INITIAL_ORTHOGRAPHIC_TARGET)
+
+    scene.add(perspectiveCamera)
+    scene.add(orthographicCamera)
 
     return {
         perspectiveCamera,
