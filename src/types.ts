@@ -2,7 +2,6 @@ import {
     AudioListener,
     Color,
     Object3D,
-    OrbitControls,
     OrthographicCamera,
     PerspectiveCamera,
     PositionalAudio,
@@ -10,6 +9,7 @@ import {
     VRControls,
     WebGLRenderer,
 } from 'three'
+import { OrbitControls } from 'three-orbitcontrols-ts'
 
 interface AttachResizeWindowParameters {
     cameras: Cameras,

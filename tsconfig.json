@@ -16,11 +16,6 @@
     "sourceMap": true,
     "skipLibCheck": true,
     "baseUrl": ".",
-    "paths": {
-      "three-orbitcontrols": [
-        "node_modules/@types/three"
-      ]
-    },
     "declaration": true
   }
 }
