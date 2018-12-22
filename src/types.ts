@@ -122,7 +122,7 @@ interface CamerasConfig {
 }
 
 interface BuildVrbParameters {
-    scene: Scene,
+    scene?: Scene,
     camerasConfig?: Partial<CamerasConfig>,
     toggle?: HTMLDivElement,
     viewer?: HTMLDivElement,
