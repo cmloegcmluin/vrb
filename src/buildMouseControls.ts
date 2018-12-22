@@ -1,4 +1,4 @@
-import { OrbitControls } from 'three-full'
+import { OrbitControls } from 'three'
 import { BuildMouseControlsParameters } from './types'
 
 const buildMouseControls = ({ renderer, cameras }: BuildMouseControlsParameters): OrbitControls => {

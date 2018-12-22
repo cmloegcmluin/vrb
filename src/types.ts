@@ -6,33 +6,22 @@ import {
     OrthographicCamera,
     PerspectiveCamera,
     PositionalAudio,
-    Renderer,
     Scene,
     VRControls,
-    VREffect,
-} from 'three-full'
+    WebGLRenderer,
+} from 'three'
 
 interface AttachResizeWindowParameters {
     cameras: Cameras,
-    vrEffect: VrbVREffect,
-    renderer: VrbRenderer,
+    renderer: WebGLRenderer,
     camerasConfig: CamerasConfig,
 }
 
-interface AttachToggleVrParameters {
-    cameras: Cameras,
-    vrEffect: VrbVREffect,
-    toggle?: HTMLDivElement,
-    mouseControls: OrbitControls,
-}
-
 interface BuildAnimateParameters {
-    renderer: VrbRenderer,
     scene: Scene,
     mouseControls: OrbitControls,
     vrControls: VrbVRControls,
     vrControllers: any,
-    vrEffect: VrbVREffect,
     cameras: Cameras,
 }
 
@@ -43,7 +32,6 @@ interface Cameras {
 }
 
 interface BuildCamerasParameters {
-    scene: Scene,
     camerasConfig: Partial<CamerasConfig>,
 }
 
@@ -56,7 +44,7 @@ interface BuildListenerParameters {
 }
 
 interface BuildMouseControlsParameters {
-    renderer: VrbRenderer,
+    renderer: WebGLRenderer,
     cameras: Cameras,
 }
 
@@ -68,15 +56,6 @@ interface BuildPlayerParameters {
 
 interface BuildRendererParameters {
     viewer?: HTMLDivElement,
-}
-
-interface VrbRenderer extends Renderer {
-    setClearColor: (color: Color) => void,
-}
-
-interface BuildRequestAnimationFrameParameters {
-    vrEffect: VrbVREffect,
-    animate: VoidFunction,
 }
 
 interface BuildVrControllersParameters {
@@ -91,18 +70,6 @@ interface BuildVrControlsParameters {
 interface VrbVRControls extends VRControls {
     standing: boolean,
     getStandingMatrix: () => string,
-}
-
-interface VrbVREffect extends VREffect {
-    getVRDisplay: () => string,
-    exitPresent: () => Promise<void>,
-    requestPresent: () => Promise<void>,
-    isPresenting: boolean,
-    requestAnimationFrame: (requestAnimationFrame: VoidFunction) => void,
-}
-
-interface BuildVrEffectParameters {
-    renderer: VrbRenderer,
 }
 
 interface CamerasConfig {
@@ -152,7 +119,6 @@ interface Vrb {
 
 export {
     AttachResizeWindowParameters,
-    AttachToggleVrParameters,
     BuildAnimateParameters,
     BuildCamerasParameters,
     BuildCreatePositionalSoundParameters,
@@ -160,16 +126,13 @@ export {
     BuildMouseControlsParameters,
     BuildPlayerParameters,
     BuildRendererParameters,
-    BuildRequestAnimationFrameParameters,
     BuildVrb,
     BuildVrbParameters,
     BuildVrControllersParameters,
     BuildVrControlsParameters,
-    BuildVrEffectParameters,
     CamerasConfig,
     Cameras,
     Vrb,
-    VrbRenderer,
+    WebGLRenderer,
     VrbVRControls,
-    VrbVREffect,
 }

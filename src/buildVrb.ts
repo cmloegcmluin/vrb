@@ -1,8 +1,7 @@
 import vrb from './vrb'
-import { Scene } from 'three-full'
+import { Scene } from 'three'
 import { CAMERAS_CONFIG_DEFAULTS } from './defaultCamerasConfig'
 import { buildRenderer } from './buildRenderer'
-import { buildVrEffect } from './buildVrEffect'
 import { buildCameras } from './buildCameras'
 import { buildPlayer } from './buildPlayer'
 import { buildListener } from './buildListener'
@@ -11,8 +10,6 @@ import { buildVrControls } from './buildVrControls'
 import { buildMouseControls } from './buildMouseControls'
 import { buildVrControllers } from './buildVrControllers'
 import { buildAnimate } from './buildAnimate'
-import { buildRequestAnimationFrame } from './buildRequestAnimationFrame'
-import { attachToggleVr } from './attachToggleVr'
 import { attachResizeWindow } from './attachResizeWindow'
 import { BuildVrb, BuildVrbParameters, Vrb } from './types'
 
@@ -45,38 +42,33 @@ const buildVrb: BuildVrb = (
 
     const camerasConfig = Object.assign(CAMERAS_CONFIG_DEFAULTS, camerasConfigOverrides)
 
+    const cameras = buildCameras({ camerasConfig })
+
     const renderer = buildRenderer({ viewer })
-    const vrEffect = buildVrEffect({ renderer })
-    const cameras = buildCameras({ scene, camerasConfig })
+    const mouseControls = buildMouseControls({ renderer, cameras })
     const perspectiveCamera = cameras.perspectiveCamera
 
     const player = buildPlayer({ scene, perspectiveCamera, camerasConfig })
     const listener = buildListener({ perspectiveCamera })
     const createPositionalSound = buildCreatePositionalSound({ listener })
     const vrControls = buildVrControls({ perspectiveCamera })
-    const mouseControls = buildMouseControls({ renderer, cameras })
     const vrControllers = buildVrControllers({ player, vrControls })
     const animate = buildAnimate({
-        renderer,
         scene,
         mouseControls,
         vrControls,
         vrControllers,
-        vrEffect,
         cameras,
     })
-    const requestAnimationFrame = buildRequestAnimationFrame({ vrEffect, animate })
+    renderer.setAnimationLoop(animate)
 
-    attachToggleVr({ cameras, vrEffect, toggle, mouseControls })
-    attachResizeWindow({ cameras, vrEffect, renderer, camerasConfig })
+    attachResizeWindow({ cameras, renderer, camerasConfig })
 
     vrb.createSpatialOscillator = () => listener.context.createOscillator()
     vrb.createSpatialBufferSource = () => listener.context.createBufferSource()
-    vrb.getIsPresenting = () => vrEffect.isPresenting
     vrb.setBackgroundColor = color => renderer.setClearColor(color)
     vrb.player = player
     vrb.createPositionalSound = createPositionalSound
-    vrb.requestAnimationFrame = requestAnimationFrame
     vrb.listener = listener
     vrb.cameras = cameras
 

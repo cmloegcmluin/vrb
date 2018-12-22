@@ -1,4 +1,4 @@
-import { AudioListener } from 'three-full'
+import { AudioListener } from 'three'
 import { BuildListenerParameters } from './types'
 
 const buildListener = ({ perspectiveCamera }: BuildListenerParameters) => {

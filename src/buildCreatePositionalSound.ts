@@ -1,4 +1,4 @@
-import { PositionalAudio } from 'three-full'
+import { PositionalAudio } from 'three'
 import { BuildCreatePositionalSoundParameters } from './types'
 
 const buildCreatePositionalSound = ({ listener }: BuildCreatePositionalSoundParameters): () => PositionalAudio => {

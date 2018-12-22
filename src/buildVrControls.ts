@@ -1,4 +1,4 @@
-import { VRControls } from 'three-full'
+import { VRControls } from 'three'
 import { BuildVrControlsParameters, VrbVRControls } from './types'
 
 const buildVrControls = ({ perspectiveCamera }: BuildVrControlsParameters): VrbVRControls => {

@@ -1,6 +1,6 @@
 {
   "name": "vrb",
-  "version": "1.1.21",
+  "version": "1.1.22",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
@@ -25,12 +25,11 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@types/three": "^0.93.8",
-    "three-full": "^6.0.0",
+    "@types/three": "^0.93.13",
+    "three": "^0.99.0",
     "three-vrcontroller-module": "^1.0.3"
   },
   "devDependencies": {
-    "tsc": "^1.20150623.0",
-    "typescript": "^3.1.6"
+    "typescript": "^3.2.2"
   }
 }
