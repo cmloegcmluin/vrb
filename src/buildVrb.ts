@@ -71,6 +71,7 @@ const buildVrb: BuildVrb = (
     attachResizeWindow({ cameras, vrEffect, renderer, camerasConfig })
 
     vrb.createSpatialOscillator = () => listener.context.createOscillator()
+    vrb.createSpatialBufferSource = () => listener.context.createBufferSource()
     vrb.getIsPresenting = () => vrEffect.isPresenting
     vrb.setBackgroundColor = color => renderer.setClearColor(color)
     vrb.player = player
