@@ -6,7 +6,6 @@ import {
     PerspectiveCamera,
     PositionalAudio,
     Scene,
-    VRControls,
     WebGLRenderer,
 } from 'three'
 import { OrbitControls } from 'three-orbitcontrols-ts'
@@ -20,9 +19,7 @@ interface AttachResizeWindowParameters {
 interface BuildAnimateParameters {
     scene: Scene,
     mouseControls: OrbitControls,
-    vrControls: VrbVRControls,
     vrControllers: any,
-    cameras: Cameras,
 }
 
 interface Cameras {
@@ -60,16 +57,6 @@ interface BuildRendererParameters {
 
 interface BuildVrControllersParameters {
     player: Object3D,
-    vrControls: VrbVRControls,
-}
-
-interface BuildVrControlsParameters {
-    perspectiveCamera: PerspectiveCamera,
-}
-
-interface VrbVRControls extends VRControls {
-    standing: boolean,
-    getStandingMatrix: () => string,
 }
 
 interface CamerasConfig {
@@ -129,10 +116,8 @@ export {
     BuildVrb,
     BuildVrbParameters,
     BuildVrControllersParameters,
-    BuildVrControlsParameters,
     CamerasConfig,
     Cameras,
     Vrb,
     WebGLRenderer,
-    VrbVRControls,
 }

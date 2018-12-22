@@ -1,12 +1,13 @@
 import vrb from './vrb'
 import { Scene } from 'three'
+// @ts-ignore
+import WebVR from 'three/examples/js/vr/WebVR'
 import { CAMERAS_CONFIG_DEFAULTS } from './defaultCamerasConfig'
 import { buildRenderer } from './buildRenderer'
 import { buildCameras } from './buildCameras'
 import { buildPlayer } from './buildPlayer'
 import { buildListener } from './buildListener'
 import { buildCreatePositionalSound } from './buildCreatePositionalSound'
-import { buildVrControls } from './buildVrControls'
 import { buildMouseControls } from './buildMouseControls'
 import { buildVrControllers } from './buildVrControllers'
 import { buildAnimate } from './buildAnimate'
@@ -51,16 +52,18 @@ const buildVrb: BuildVrb = (
     const player = buildPlayer({ scene, perspectiveCamera, camerasConfig })
     const listener = buildListener({ perspectiveCamera })
     const createPositionalSound = buildCreatePositionalSound({ listener })
-    const vrControls = buildVrControls({ perspectiveCamera })
-    const vrControllers = buildVrControllers({ player, vrControls })
+    const vrControllers = buildVrControllers({ player })
     const animate = buildAnimate({
         scene,
         mouseControls,
-        vrControls,
         vrControllers,
-        cameras,
     })
-    renderer.setAnimationLoop(animate)
+
+    document.body.appendChild(WebVR.createButton(renderer))
+    renderer.setAnimationLoop(() => {
+        renderer.render(scene, cameras.currentCamera)
+        animate()
+    })
 
     attachResizeWindow({ cameras, renderer, camerasConfig })
 
