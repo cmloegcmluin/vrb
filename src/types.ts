@@ -16,6 +16,13 @@ interface AttachResizeWindowParameters {
     camerasConfig: CamerasConfig,
 }
 
+interface AttachToggleVrParameters {
+    cameras: Cameras,
+    renderer: WebGLRenderer,
+    toggle?: HTMLDivElement,
+    mouseControls: OrbitControls,
+}
+
 interface BuildAnimateParameters {
     scene: Scene,
     mouseControls: OrbitControls,
@@ -106,6 +113,7 @@ interface Vrb {
 
 export {
     AttachResizeWindowParameters,
+    AttachToggleVrParameters,
     BuildAnimateParameters,
     BuildCamerasParameters,
     BuildCreatePositionalSoundParameters,

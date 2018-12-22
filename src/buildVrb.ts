@@ -1,7 +1,5 @@
 import vrb from './vrb'
 import { Scene } from 'three'
-// @ts-ignore
-import WebVR from 'three/examples/js/vr/WebVR'
 import { CAMERAS_CONFIG_DEFAULTS } from './defaultCamerasConfig'
 import { buildRenderer } from './buildRenderer'
 import { buildCameras } from './buildCameras'
@@ -11,6 +9,7 @@ import { buildCreatePositionalSound } from './buildCreatePositionalSound'
 import { buildMouseControls } from './buildMouseControls'
 import { buildVrControllers } from './buildVrControllers'
 import { buildAnimate } from './buildAnimate'
+import { attachToggleVr } from './attachToggleVr'
 import { attachResizeWindow } from './attachResizeWindow'
 import { BuildVrb, BuildVrbParameters, Vrb } from './types'
 
@@ -59,12 +58,11 @@ const buildVrb: BuildVrb = (
         vrControllers,
     })
 
-    document.body.appendChild(WebVR.createButton(renderer))
     renderer.setAnimationLoop(() => {
         renderer.render(scene, cameras.currentCamera)
         animate()
     })
-
+    attachToggleVr({ cameras, renderer, toggle, mouseControls })
     attachResizeWindow({ cameras, renderer, camerasConfig })
 
     vrb.createSpatialOscillator = () => listener.context.createOscillator()
@@ -72,6 +70,10 @@ const buildVrb: BuildVrb = (
     vrb.setBackgroundColor = color => renderer.setClearColor(color)
     vrb.player = player
     vrb.createPositionalSound = createPositionalSound
+    vrb.getIsPresenting = (): boolean => {
+        const device = renderer.vr.getDevice()
+        return !!device && device.isPresenting
+    }
     vrb.listener = listener
     vrb.cameras = cameras
 
