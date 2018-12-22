@@ -11,7 +11,8 @@ const attachToggleVr = ({ cameras, vrEffect, toggle, mouseControls }: AttachTogg
     }
 
     const enterPresent = () => {
-        vrEffect.requestPresent().catch(() => {
+        vrEffect.requestPresent().catch((error) => {
+            console.log('Error when trying to enter VR: ', error)
         })
         mouseControls.enabled = false
         cameras.currentCamera = cameras.perspectiveCamera
