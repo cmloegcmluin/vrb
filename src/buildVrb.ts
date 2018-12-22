@@ -78,6 +78,7 @@ const buildVrb: BuildVrb = (
     vrb.createPositionalSound = createPositionalSound
     vrb.requestAnimationFrame = requestAnimationFrame
     vrb.listener = listener
+    vrb.cameras = cameras
 
     return vrb as Vrb
 }

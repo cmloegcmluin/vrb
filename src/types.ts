@@ -133,6 +133,7 @@ interface BuildVrbParameters {
 type BuildVrb = (buildVrbParameters: BuildVrbParameters) => Vrb
 
 interface Vrb {
+    cameras: Cameras,
     createSpatialBufferSource: () => AudioBufferSourceNode,
     createSpatialOscillator: () => OscillatorNode,
     getIsPresenting: () => boolean,

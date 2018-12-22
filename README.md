@@ -91,6 +91,7 @@ Schedule the first frame to be rendered using three.js `VREffect#requestAnimatio
 ### .player
 
 This is a meshless three.js `Object3D` which has the perspective camera and any controllers added to it. That way you can translate the player around independently of the three.js `VRControls` to go beyond room scale VR.
+Note: if you want to know the position of the user's head, you'll have to look at both `player.position` and `cameras.perspectiveCamera.position`, as it will be the sum of the two.
 
 ### #getIsPresenting
 
@@ -110,12 +111,12 @@ Wrapper for three.js `WebGLRenderer#setClearColor`.
 
 ### #changeOnAnimate
 
-If it is necessary to change your `onAnimate` funnction after building your `vrb`, use this. Pass it a function that will get called with the current `onAnimate` and return what you want it to be afterwards.
+If it is necessary to change your `onAnimate` function after building your `vrb`, use this. Pass it a function that will get called with the current `onAnimate` and return what you want it to be afterwards.
 
 `vrb.changeOnAnimate(oldAnimate => createModifiedAnimate(oldAnimate))`
 
 ### #changeOnControllerConnected
 
-If it is necessary to change your `onControllerConnected` funnction after building your `vrb`, use this. Pass it a function that will get called with the current `onControllerConnected` and return what you want it to be afterwards.
+If it is necessary to change your `onControllerConnected` function after building your `vrb`, use this. Pass it a function that will get called with the current `onControllerConnected` and return what you want it to be afterwards.
 
 `vrb.onControllerConnected(oldOnControllerConnected => createModifiedOnControllerConnected(oldOnControllerConnected))`
