@@ -22,7 +22,7 @@ const noop: VoidFunction = () => {
 const buildVrb: BuildVrb = (
     {
         camerasConfig: camerasConfigOverrides,
-        scene,
+        scene = new Scene(),
         toggle,
         viewer,
         onAnimate = () => {
@@ -31,7 +31,7 @@ const buildVrb: BuildVrb = (
         },
     }: BuildVrbParameters,
 ): Vrb => {
-    vrb.scene = scene || new Scene()
+    vrb.scene = scene
     vrb.onAnimate = onAnimate || noop
     vrb.changeOnAnimate = onAnimateChangingFunction => {
         vrb.onAnimate = onAnimateChangingFunction(vrb.onAnimate || noop)
