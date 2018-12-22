@@ -17,7 +17,7 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "three-orbit-controls": [
+      "three-orbitcontrols": [
         "node_modules/@types/three"
       ]
     },
