@@ -9,6 +9,7 @@ const attachToggleVr = async ({ cameras, renderer, toggle, mouseControls }: Atta
     if (navigator.xr) {
         // @ts-ignore
         device = await navigator.xr.requestDevice()
+        await device.supportsSession( { immersive: true, exclusive: true /* DEPRECATED */ } )
     } else {
         const displays = await navigator.getVRDisplays()
         device = displays[0]
