@@ -95,7 +95,7 @@ Note: if you want to know the position of the user's head, you'll have to look a
 
 ### #getIsPresenting
 
-Wrapper for three.js `VREffect#isPresenting`.
+Wrapper for `renderer.vr.getDevice().isPresenting`.
 
 ### #createSpatialOscillator
 

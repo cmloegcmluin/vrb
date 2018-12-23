@@ -27,9 +27,6 @@ const buildCameras = ({camerasConfig}: BuildCamerasParameters): Cameras => {
     // @ts-ignore
     orthographicCamera.lookAt(...camerasConfig.INITIAL_ORTHOGRAPHIC_TARGET)
 
-    // scene.add(perspectiveCamera)
-    // scene.add(orthographicCamera)
-
     return {
         perspectiveCamera,
         orthographicCamera,
