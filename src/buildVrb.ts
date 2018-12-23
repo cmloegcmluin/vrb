@@ -13,7 +13,7 @@ import { attachToggleVr } from './attachToggleVr'
 import { attachResizeWindow } from './attachResizeWindow'
 import { BuildVrb, BuildVrbParameters, Vrb } from './types'
 // @ts-ignore
-import WebVRPolyfill from 'webvr-polyfill'
+import * as WebVRPolyfill from 'webvr-polyfill'
 new WebVRPolyfill()
 
 const noop: VoidFunction = () => {
