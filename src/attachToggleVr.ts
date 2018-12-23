@@ -3,17 +3,27 @@ import { AttachToggleVrParameters } from './types'
 const attachToggleVr = async ({ cameras, renderer, toggle, mouseControls }: AttachToggleVrParameters): Promise<void> => {
     const toggleVr = () => cameras.currentCamera === cameras.perspectiveCamera ? exitPresent() : enterPresent()
 
-    const displays = await navigator.getVRDisplays()
-    const device = displays[ 0 ]
+    // @ts-ignore
+    let device
+    // @ts-ignore
+    if (navigator.xr) {
+        // @ts-ignore
+        device = await navigator.xr.requestDevice()
+    } else {
+        const displays = await navigator.getVRDisplays()
+        device = displays[0]
+    }
     renderer.vr.setDevice(device)
 
     const exitPresent = () => {
+        // @ts-ignore
         device.exitPresent()
         mouseControls.enabled = true
         cameras.currentCamera = cameras.orthographicCamera
     }
 
     const enterPresent = () => {
+        // @ts-ignore
         device.requestPresent([ { source: renderer.domElement } ])
         mouseControls.enabled = false
         cameras.currentCamera = cameras.perspectiveCamera
