@@ -15,7 +15,6 @@
     "pretty": true,
     "sourceMap": true,
     "skipLibCheck": true,
-    "baseUrl": ".",
     "declaration": true
   }
 }
