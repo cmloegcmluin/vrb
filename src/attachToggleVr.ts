@@ -28,6 +28,7 @@ const attachToggleVr = async ({ cameras, renderer, toggle, mouseControls }: Atta
     }
 
     const exitPresent = async () => {
+        console.log('someone is calling exit present')
         // @ts-ignore
         if (navigator.xr) {
             // @ts-ignore
@@ -40,6 +41,7 @@ const attachToggleVr = async ({ cameras, renderer, toggle, mouseControls }: Atta
     }
 
     const enterPresent = async () => {
+        console.log('someone is calling enter present')
         // @ts-ignore
         if (navigator.xr) {
             // @ts-ignore
@@ -60,7 +62,10 @@ const attachToggleVr = async ({ cameras, renderer, toggle, mouseControls }: Atta
     }
 
     if (toggle) {
-        toggle.onclick = toggleVr
+        toggle.onclick = () => {
+            console.log('you clicked the toggle!')
+            toggleVr()
+        }
     } else {
         console.log('there was no toggle, so setting timeout')
         setTimeout(() => {
