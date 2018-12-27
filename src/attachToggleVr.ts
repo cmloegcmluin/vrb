@@ -60,7 +60,9 @@ const attachToggleVr = async ({ cameras, renderer, toggle, mouseControls }: Atta
                 device = requestedDevice
                 renderer.vr.setDevice(requestedDevice)
                 if (autoEnter) {
-                    enterPresent()
+                    setTimeout(() => {
+                        enterPresent()
+                    }, 1000)
                 }
             }).catch((err: Error) => {
                 console.log('error supporting XR device', err)
@@ -75,7 +77,9 @@ const attachToggleVr = async ({ cameras, renderer, toggle, mouseControls }: Atta
         renderer.vr.setDevice(device)
         // @ts-ignore
         if (autoEnter) {
-            enterPresent()
+            setTimeout(() => {
+                enterPresent()
+            }, 1000)
         }
     }
 }
