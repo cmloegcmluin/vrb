@@ -7,10 +7,16 @@ const attachToggleVr = async ({ cameras, renderer, toggle, mouseControls }: Atta
     // @ts-ignore
     if (navigator.xr) {
         // @ts-ignore
-        navigator.xr.requestDevice().then(requestedDevice => {
-            console.log('success requesting XR device', device)
-            device = requestedDevice
-            renderer.vr.setDevice(device)
+        navigator.xr.requestDevice().then((requestedDevice: VRDisplay) => {
+            console.log('success requesting XR device', requestedDevice)
+            // @ts-ignore
+            requestedDevice.supportsSession({ immersive: true, exclusive: true }).then((supportedDevice: VRDisplay) => {
+                console.log('success supporting XR device', supportedDevice)
+                device = supportedDevice
+                renderer.vr.setDevice(supportedDevice)
+            }).catch((err: Error) => {
+                console.log('error supporting XR device', err)
+            })
         }).catch((err: Error) => {
             console.log('error requesting XR device', err)
         })
@@ -56,7 +62,11 @@ const attachToggleVr = async ({ cameras, renderer, toggle, mouseControls }: Atta
     if (toggle) {
         toggle.onclick = toggleVr
     } else {
-        setTimeout(enterPresent, 1000)
+        console.log('there was no toggle, so setting timeout')
+        setTimeout(() => {
+            console.log('entering present automatically')
+            enterPresent()
+        }, 1000)
     }
 }
 
