@@ -10,10 +10,10 @@ const attachToggleVr = async ({ cameras, renderer, toggle, mouseControls }: Atta
         navigator.xr.requestDevice().then((requestedDevice: VRDisplay) => {
             console.log('success requesting XR device', requestedDevice)
             // @ts-ignore
-            requestedDevice.supportsSession({ immersive: true, exclusive: true }).then((supportedDevice: VRDisplay) => {
-                console.log('success supporting XR device', supportedDevice)
-                device = supportedDevice
-                renderer.vr.setDevice(supportedDevice)
+            requestedDevice.supportsSession({ immersive: true, exclusive: true }).then(() => {
+                console.log('success supporting XR device')
+                device = requestedDevice
+                renderer.vr.setDevice(requestedDevice)
             }).catch((err: Error) => {
                 console.log('error supporting XR device', err)
             })
