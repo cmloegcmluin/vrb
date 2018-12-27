@@ -3,29 +3,8 @@ import { AttachToggleVrParameters } from './types'
 const attachToggleVr = async ({ cameras, renderer, toggle, mouseControls }: AttachToggleVrParameters): Promise<void> => {
     const toggleVr = () => cameras.currentCamera === cameras.perspectiveCamera ? exitPresent() : enterPresent()
 
+    let autoEnter: boolean
     let device: VRDisplay
-    // @ts-ignore
-    if (navigator.xr) {
-        // @ts-ignore
-        navigator.xr.requestDevice().then((requestedDevice: VRDisplay) => {
-            console.log('success requesting XR device', requestedDevice)
-            // @ts-ignore
-            requestedDevice.supportsSession({ immersive: true, exclusive: true }).then(() => {
-                console.log('success supporting XR device')
-                device = requestedDevice
-                renderer.vr.setDevice(requestedDevice)
-            }).catch((err: Error) => {
-                console.log('error supporting XR device', err)
-            })
-        }).catch((err: Error) => {
-            console.log('error requesting XR device', err)
-        })
-    } else {
-        const displays: VRDisplay[] = await navigator.getVRDisplays()
-        device = displays[ 0 ]
-        console.log('success requesting VR device', device)
-        renderer.vr.setDevice(device)
-    }
 
     const exitPresent = async () => {
         console.log('someone is calling exit present')
@@ -67,11 +46,37 @@ const attachToggleVr = async ({ cameras, renderer, toggle, mouseControls }: Atta
             toggleVr()
         }
     } else {
-        console.log('there was no toggle, so setting timeout')
-        setTimeout(() => {
-            console.log('entering present automatically')
+        autoEnter = true
+    }
+
+    // @ts-ignore
+    if (navigator.xr) {
+        // @ts-ignore
+        navigator.xr.requestDevice().then((requestedDevice: VRDisplay) => {
+            console.log('success requesting XR device', requestedDevice)
+            // @ts-ignore
+            requestedDevice.supportsSession({ immersive: true, exclusive: true }).then(() => {
+                console.log('success supporting XR device')
+                device = requestedDevice
+                renderer.vr.setDevice(requestedDevice)
+                if (autoEnter) {
+                    enterPresent()
+                }
+            }).catch((err: Error) => {
+                console.log('error supporting XR device', err)
+            })
+        }).catch((err: Error) => {
+            console.log('error requesting XR device', err)
+        })
+    } else {
+        const displays: VRDisplay[] = await navigator.getVRDisplays()
+        device = displays[ 0 ]
+        console.log('success requesting VR device', device)
+        renderer.vr.setDevice(device)
+        // @ts-ignore
+        if (autoEnter) {
             enterPresent()
-        }, 1000)
+        }
     }
 }
 
