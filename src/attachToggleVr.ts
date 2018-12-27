@@ -8,14 +8,16 @@ const attachToggleVr = async ({ cameras, renderer, toggle, mouseControls }: Atta
     if (navigator.xr) {
         // @ts-ignore
         navigator.xr.requestDevice().then(requestedDevice => {
+            console.log('success requesting XR device', device)
             device = requestedDevice
             renderer.vr.setDevice(device)
         }).catch((err: Error) => {
-            console.log('error requesting device', err)
+            console.log('error requesting XR device', err)
         })
     } else {
         const displays: VRDisplay[] = await navigator.getVRDisplays()
         device = displays[ 0 ]
+        console.log('success requesting VR device', device)
         renderer.vr.setDevice(device)
     }
 
@@ -36,13 +38,15 @@ const attachToggleVr = async ({ cameras, renderer, toggle, mouseControls }: Atta
         if (navigator.xr) {
             // @ts-ignore
             device.requestSession({ immersive: true, exclusive: true }).then(session => {
+                console.log('success requesting XR session', session)
                 // @ts-ignore
                 renderer.vr.setSession(session)
             }).catch((err: Error) => {
-                console.log('what went wrong', err)
+                console.log('error requesting XR session', err)
             })
         } else {
             await device.requestPresent([ { source: renderer.domElement } ])
+            console.log('success requesting VR present')
         }
 
         mouseControls.enabled = false
