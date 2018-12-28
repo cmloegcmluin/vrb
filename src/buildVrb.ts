@@ -9,7 +9,7 @@ import { buildCreatePositionalSound } from './buildCreatePositionalSound'
 import { buildMouseControls } from './buildMouseControls'
 import { buildVrControllers } from './buildVrControllers'
 import { buildAnimate } from './buildAnimate'
-import { attachToggleVr } from './attachToggleVr'
+import { buildToggleVr } from './buildToggleVr'
 import { attachResizeWindow } from './attachResizeWindow'
 import { BuildVrb, BuildVrbParameters, Vrb } from './types'
 
@@ -20,7 +20,6 @@ const buildVrb: BuildVrb = (
     {
         camerasConfig: camerasConfigOverrides,
         scene = new Scene(),
-        toggle,
         viewer,
         onAnimate = () => {
         },
@@ -62,7 +61,7 @@ const buildVrb: BuildVrb = (
         renderer.render(scene, cameras.currentCamera)
         animate()
     })
-    attachToggleVr({ cameras, renderer, toggle, mouseControls })
+    vrb.toggleVr = buildToggleVr({ cameras, renderer, mouseControls })
     attachResizeWindow({ cameras, renderer, camerasConfig })
 
     vrb.createSpatialOscillator = () => listener.context.createOscillator()

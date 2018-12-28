@@ -105,6 +105,7 @@ interface Vrb {
     requestAnimationFrame: VoidFunction,
     listener: AudioListener,
     scene: Scene,
+    toggleVr: VoidFunction,
     onAnimate: VoidFunction,
     changeOnAnimate: (newOnAnimate: (oldOnAnimate: VoidFunction) => VoidFunction) => void,
     onControllerConnected: (controller: any) => void,

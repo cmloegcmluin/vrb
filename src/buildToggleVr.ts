@@ -1,9 +1,6 @@
 import { AttachToggleVrParameters } from './types'
 
-const attachToggleVr = async ({ cameras, renderer, toggle, mouseControls }: AttachToggleVrParameters): Promise<void> => {
-    const toggleVr = () => cameras.currentCamera === cameras.perspectiveCamera ? exitPresent() : enterPresent()
-
-    let autoEnter: boolean
+const buildToggleVr = ({ cameras, renderer, mouseControls }: AttachToggleVrParameters): VoidFunction => {
     let device: VRDisplay
 
     const exitPresent = async () => {
@@ -40,15 +37,6 @@ const attachToggleVr = async ({ cameras, renderer, toggle, mouseControls }: Atta
         cameras.currentCamera = cameras.perspectiveCamera
     }
 
-    if (toggle) {
-        toggle.onclick = () => {
-            console.log('you clicked the toggle!')
-            toggleVr()
-        }
-    } else {
-        autoEnter = true
-    }
-
     // @ts-ignore
     if (navigator.xr) {
         // @ts-ignore
@@ -59,11 +47,6 @@ const attachToggleVr = async ({ cameras, renderer, toggle, mouseControls }: Atta
                 console.log('success supporting XR device')
                 device = requestedDevice
                 renderer.vr.setDevice(requestedDevice)
-                if (autoEnter) {
-                    setTimeout(() => {
-                        enterPresent()
-                    }, 1000)
-                }
             }).catch((err: Error) => {
                 console.log('error supporting XR device', err)
             })
@@ -71,19 +54,18 @@ const attachToggleVr = async ({ cameras, renderer, toggle, mouseControls }: Atta
             console.log('error requesting XR device', err)
         })
     } else {
-        const displays: VRDisplay[] = await navigator.getVRDisplays()
-        device = displays[ 0 ]
-        console.log('success requesting VR device', device)
-        renderer.vr.setDevice(device)
-        // @ts-ignore
-        if (autoEnter) {
-            setTimeout(() => {
-                enterPresent()
-            }, 1000)
-        }
+        navigator.getVRDisplays().then((displays: VRDisplay[]) => {
+            console.log('success getting VR device', device)
+            device = displays[ 0 ]
+            renderer.vr.setDevice(device)
+        }).catch((err: Error) => {
+            console.log('error getting VR device', err)
+        })
     }
+
+    return () => cameras.currentCamera === cameras.perspectiveCamera ? exitPresent() : enterPresent()
 }
 
 export {
-    attachToggleVr,
+    buildToggleVr,
 }

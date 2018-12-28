@@ -16,15 +16,15 @@ Opens in an orthographic view of the scene. Click a toggle to enter in and out o
 
 ```
 import vrb from 'vrb'
-import {Scene} from 'three-full'
+import {Scene} from 'three'
 
 const scene = new Scene()
-const toggle = document.createElement('div')
 const viewer = document.createElement('div')
 
-const vrb = vrb({ scene, toggle, viewer })
+const vrb = vrb({ scene, viewer })
 
-vrb.requestAnimationFrame()
+const toggle = document.createElement('div')
+toggle.onclick = vrb.toggleVr
 ```
 
 ## options
@@ -56,7 +56,7 @@ const onControllerConnected = controller => {
     controller.addEventListener('thumbpad press began', handleThumbpadPress)
 }
 
-vrb({ scene, toggle, viewer, onControllerConnected })
+vrb({ scene, viewer, onControllerConnected })
 ```
 
 ### camerasConfig
@@ -83,10 +83,6 @@ Override default camera configuration with this object.
 ```
 
 ## methods & properties
-
-### #requestAnimationFrame
-
-Schedule the first frame to be rendered using three.js `VREffect#requestAnimationFrame`. Animation will continue automatically.
 
 ### .player
 
