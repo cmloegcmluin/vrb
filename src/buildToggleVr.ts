@@ -53,7 +53,7 @@ const buildToggleVr = ({ cameras, renderer, mouseControls }: AttachToggleVrParam
         }).catch((err: Error) => {
             console.log('error requesting XR device', err)
         })
-    } else {
+    } else if (navigator.getVRDisplays) {
         navigator.getVRDisplays().then((displays: VRDisplay[]) => {
             console.log('success getting VR device', device)
             device = displays[ 0 ]
@@ -61,6 +61,8 @@ const buildToggleVr = ({ cameras, renderer, mouseControls }: AttachToggleVrParam
         }).catch((err: Error) => {
             console.log('error getting VR device', err)
         })
+    } else {
+        console.log('no vr or xr')
     }
 
     return () => cameras.currentCamera === cameras.perspectiveCamera ? exitPresent() : enterPresent()
