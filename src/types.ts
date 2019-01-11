@@ -21,6 +21,7 @@ interface AttachToggleVrParameters {
     renderer: WebGLRenderer,
     toggle?: HTMLDivElement,
     mouseControls: OrbitControls,
+    onReady: VoidFunction,
 }
 
 interface BuildAnimateParameters {
@@ -90,6 +91,7 @@ interface BuildVrbParameters {
     viewer?: HTMLDivElement,
     onAnimate?: VoidFunction,
     onControllerConnected?: VoidFunction,
+    onReady?: VoidFunction,
 }
 
 type BuildVrb = (buildVrbParameters: BuildVrbParameters) => Vrb

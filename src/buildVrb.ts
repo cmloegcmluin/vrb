@@ -25,6 +25,8 @@ const buildVrb: BuildVrb = (
         },
         onControllerConnected = () => {
         },
+        onReady = () => {
+        },
     }: BuildVrbParameters,
 ): Vrb => {
     vrb.scene = scene
@@ -61,7 +63,7 @@ const buildVrb: BuildVrb = (
         renderer.render(scene, cameras.currentCamera)
         animate()
     })
-    vrb.toggleVr = buildToggleVr({ cameras, renderer, mouseControls })
+    vrb.toggleVr = buildToggleVr({ cameras, renderer, mouseControls, onReady })
     attachResizeWindow({ cameras, renderer, camerasConfig })
 
     vrb.createSpatialOscillator = () => listener.context.createOscillator()

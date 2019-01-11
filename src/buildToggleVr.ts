@@ -1,14 +1,16 @@
 import { AttachToggleVrParameters } from './types'
 
-const buildToggleVr = ({ cameras, renderer, mouseControls }: AttachToggleVrParameters): VoidFunction => {
+const buildToggleVr = ({ cameras, renderer, mouseControls, onReady }: AttachToggleVrParameters): VoidFunction => {
     let device: VRDisplay
+    // tslint:disable-next-line:no-any
+    let currentSession: any
 
     const exitPresent = async () => {
         console.log('someone is calling exit present')
         // @ts-ignore
         if (navigator.xr) {
             // @ts-ignore
-            renderer.vr.setSession(null)
+            currentSession.end()
         } else {
             await device.exitPresent()
         }
@@ -25,6 +27,7 @@ const buildToggleVr = ({ cameras, renderer, mouseControls }: AttachToggleVrParam
                 console.log('success requesting XR session', session)
                 // @ts-ignore
                 renderer.vr.setSession(session)
+                currentSession = session
             }).catch((err: Error) => {
                 console.log('error requesting XR session', err)
             })
@@ -47,6 +50,7 @@ const buildToggleVr = ({ cameras, renderer, mouseControls }: AttachToggleVrParam
                 console.log('success supporting XR device')
                 device = requestedDevice
                 renderer.vr.setDevice(requestedDevice)
+                onReady()
             }).catch((err: Error) => {
                 console.log('error supporting XR device', err)
             })
@@ -58,6 +62,7 @@ const buildToggleVr = ({ cameras, renderer, mouseControls }: AttachToggleVrParam
             console.log('success getting VR device', device)
             device = displays[ 0 ]
             renderer.vr.setDevice(device)
+            onReady()
         }).catch((err: Error) => {
             console.log('error getting VR device', err)
         })

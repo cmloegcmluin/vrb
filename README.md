@@ -20,8 +20,11 @@ import {Scene} from 'three'
 
 const scene = new Scene()
 const viewer = document.createElement('div')
+const onReady = () => {
+	// do whatever you want once the VR device is ready
+}
 
-const vrb = vrb({ scene, viewer })
+const vrb = vrb({ scene, viewer, onReady })
 
 const toggle = document.createElement('div')
 toggle.onclick = vrb.toggleVr
