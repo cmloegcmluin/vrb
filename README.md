@@ -23,8 +23,12 @@ const viewer = document.createElement('div')
 const onReady = () => {
 	// do whatever you want once the VR device is ready
 }
+const onNoVr = () => {
+	// do whatever you want once it is determined that your system does not support VR
+}
 
-const vrb = vrb({ scene, viewer, onReady })
+
+const vrb = vrb({ scene, viewer, onReady, onNoVr })
 
 const toggle = document.createElement('div')
 toggle.onclick = vrb.toggleVr

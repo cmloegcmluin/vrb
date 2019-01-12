@@ -1,6 +1,6 @@
 import { AttachToggleVrParameters } from './types'
 
-const buildToggleVr = ({ cameras, renderer, mouseControls, onReady }: AttachToggleVrParameters): VoidFunction => {
+const buildToggleVr = ({ cameras, renderer, mouseControls, onReady, onNoVr }: AttachToggleVrParameters): VoidFunction => {
     let device: VRDisplay
     // tslint:disable-next-line:no-any
     let currentSession: any
@@ -53,9 +53,11 @@ const buildToggleVr = ({ cameras, renderer, mouseControls, onReady }: AttachTogg
                 onReady()
             }).catch((err: Error) => {
                 console.log('error supporting XR device', err)
+                onNoVr()
             })
         }).catch((err: Error) => {
             console.log('error requesting XR device', err)
+            onNoVr()
         })
     } else if (navigator.getVRDisplays) {
         navigator.getVRDisplays().then((displays: VRDisplay[]) => {
@@ -65,9 +67,11 @@ const buildToggleVr = ({ cameras, renderer, mouseControls, onReady }: AttachTogg
             onReady()
         }).catch((err: Error) => {
             console.log('error getting VR device', err)
+            onNoVr()
         })
     } else {
         console.log('no vr or xr')
+        onNoVr()
     }
 
     return () => cameras.currentCamera === cameras.perspectiveCamera ? exitPresent() : enterPresent()
