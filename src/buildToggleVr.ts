@@ -1,6 +1,7 @@
+import vrb from './vrb'
 import { AttachToggleVrParameters } from './types'
 
-const buildToggleVr = ({ cameras, renderer, mouseControls, onReady, onNoVr }: AttachToggleVrParameters): VoidFunction => {
+const buildToggleVr = ({ cameras, renderer, mouseControls, onNoVr }: AttachToggleVrParameters): VoidFunction => {
     let device: VRDisplay
     // tslint:disable-next-line:no-any
     let currentSession: any
@@ -50,7 +51,7 @@ const buildToggleVr = ({ cameras, renderer, mouseControls, onReady, onNoVr }: At
                 console.log('success supporting XR device')
                 device = requestedDevice
                 renderer.vr.setDevice(requestedDevice)
-                onReady()
+                vrb.onReady && vrb.onReady()
             }).catch((err: Error) => {
                 console.log('error supporting XR device', err)
                 onNoVr()
@@ -64,7 +65,7 @@ const buildToggleVr = ({ cameras, renderer, mouseControls, onReady, onNoVr }: At
             console.log('success getting VR device', device)
             device = displays[ 0 ]
             renderer.vr.setDevice(device)
-            onReady()
+            vrb.onReady && vrb.onReady()
         }).catch((err: Error) => {
             console.log('error getting VR device', err)
             onNoVr()

@@ -22,7 +22,6 @@ interface AttachToggleVrParameters {
     toggle?: HTMLDivElement,
     mouseControls: OrbitControls,
     onNoVr: VoidFunction,
-    onReady: VoidFunction,
 }
 
 interface BuildAnimateParameters {
@@ -111,6 +110,7 @@ interface Vrb {
     scene: Scene,
     toggleVr: VoidFunction,
     onAnimate: VoidFunction,
+    onReady: VoidFunction,
     changeOnAnimate: (newOnAnimate: (oldOnAnimate: VoidFunction) => VoidFunction) => void,
     onControllerConnected: (controller: any) => void,
     changeOnControllerConnected: (newOnControllerConnected: (oldOnControllerConnected: VoidFunction) => VoidFunction) => void

@@ -21,18 +21,15 @@ const buildVrb: BuildVrb = (
         camerasConfig: camerasConfigOverrides,
         scene = new Scene(),
         viewer,
-        onAnimate = () => {
-        },
-        onControllerConnected = () => {
-        },
-        onNoVr = () => {
-        },
-        onReady = () => {
-        },
+        onAnimate = noop,
+        onControllerConnected = noop,
+        onNoVr = noop,
+        onReady = noop,
     }: BuildVrbParameters,
 ): Vrb => {
     vrb.scene = scene
-    vrb.onAnimate = onAnimate || noop
+    vrb.onAnimate = onAnimate
+    vrb.onReady = onReady
     vrb.changeOnAnimate = onAnimateChangingFunction => {
         vrb.onAnimate = onAnimateChangingFunction(vrb.onAnimate || noop)
     }
@@ -65,7 +62,7 @@ const buildVrb: BuildVrb = (
         renderer.render(scene, cameras.currentCamera)
         animate()
     })
-    vrb.toggleVr = buildToggleVr({ cameras, renderer, mouseControls, onReady, onNoVr })
+    vrb.toggleVr = buildToggleVr({ cameras, renderer, mouseControls, onNoVr })
     attachResizeWindow({ cameras, renderer, camerasConfig })
 
     vrb.createSpatialOscillator = () => listener.context.createOscillator()
