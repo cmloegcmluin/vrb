@@ -44,13 +44,13 @@ const buildToggleVr = ({ cameras, renderer, mouseControls, onNoVr }: AttachToggl
     // @ts-ignore
     if (navigator.xr) {
         // @ts-ignore
-        navigator.xr.requestDevice().then((requestedDevice: VRDisplay) => {
-            console.log('success requesting XR device', requestedDevice)
+        navigator.xr.requestSession({ mode: 'immersive-vr' }).then((session: VRDisplay) => {
+            console.log('success requesting XR device', session)
             // @ts-ignore
             requestedDevice.supportsSession({ immersive: true, exclusive: true }).then(() => {
                 console.log('success supporting XR device')
-                device = requestedDevice
-                renderer.vr.setDevice(requestedDevice)
+                device = session
+                renderer.vr.setDevice(session)
                 vrb.onReady && vrb.onReady()
             }).catch((err: Error) => {
                 console.log('error supporting XR device', err)
