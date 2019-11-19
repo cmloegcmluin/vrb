@@ -9,7 +9,7 @@ const buildAnimate = ({
     const animate = () => {
         vrb.onAnimate && vrb.onAnimate()
         mouseControls.update()
-        vrControllers.update()
+        // vrControllers.update()
     }
 
     return animate
