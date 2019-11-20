@@ -1,4 +1,4 @@
-import { OrbitControls } from 'three-orbitcontrols-ts';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { BuildMouseControlsParameters } from './types'
 
 const buildMouseControls = ({ renderer, cameras }: BuildMouseControlsParameters): OrbitControls => {

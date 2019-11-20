@@ -8,7 +8,7 @@ import {
     Scene,
     WebGLRenderer,
 } from 'three'
-import { OrbitControls } from 'three-orbitcontrols-ts'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 interface AttachResizeWindowParameters {
     cameras: Cameras,
