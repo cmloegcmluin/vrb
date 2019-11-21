@@ -8,7 +8,7 @@ import {
     Scene,
     WebGLRenderer,
 } from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls.js'
 
 interface AttachResizeWindowParameters {
     cameras: Cameras,
@@ -20,13 +20,13 @@ interface AttachToggleVrParameters {
     cameras: Cameras,
     renderer: WebGLRenderer,
     toggle?: HTMLDivElement,
-    mouseControls: OrbitControls,
+    mouseControls: TrackballControls,
     onNoVr: VoidFunction,
 }
 
 interface BuildAnimateParameters {
     scene: Scene,
-    mouseControls: OrbitControls,
+    mouseControls: TrackballControls,
     vrControllers: any,
 }
 
