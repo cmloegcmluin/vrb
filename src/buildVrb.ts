@@ -71,8 +71,8 @@ const buildVrb: BuildVrb = (
     vrb.player = player
     vrb.createPositionalSound = createPositionalSound
     vrb.getIsPresenting = (): boolean => {
-        const device = renderer.vr.getDevice()
-        return !!device && device.isPresenting
+        const session = renderer.xr.getSession()
+        return !!session
     }
     vrb.listener = listener
     vrb.cameras = cameras

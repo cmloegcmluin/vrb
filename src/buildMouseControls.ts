@@ -3,7 +3,7 @@ import { BuildMouseControlsParameters } from './types'
 
 const buildMouseControls = ({ renderer, cameras }: BuildMouseControlsParameters): TrackballControls => {
     const mouseControls = new TrackballControls(cameras.orthographicCamera, renderer.domElement)
-    mouseControls.rotateSpeed = 0.1
+    // mouseControls.rotateSpeed = 0.1
 
     return mouseControls
 }
