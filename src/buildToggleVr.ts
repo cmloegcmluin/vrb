@@ -26,23 +26,23 @@ const buildToggleVr = ({ cameras, renderer, mouseControls, onNoVr }: AttachToggl
 
     const enterPresent = async () => {
         console.log('someone is calling enter present')
-        
-        await currentSession.requestPresent([{ source: renderer.domElement }])
-        console.log('success requesting VR present')
 
-        mouseControls.enabled = false
-        cameras.currentCamera = cameras.perspectiveCamera
+        xr.requestSession('immersive-vr').then(async (session: XRSession) => {
+            console.log('success requesting XR session', session)
+            currentSession = session
+            await renderer.xr.setSession(session)
+            vrb.onReady && vrb.onReady()
+
+            await currentSession.requestPresent([{ source: renderer.domElement }])
+            console.log('success requesting VR present')
+
+            mouseControls.enabled = false
+            cameras.currentCamera = cameras.perspectiveCamera
+        }).catch((err: Error) => {
+            console.log('error requesting XR session', err)
+            onNoVr()
+        })
     }
-
-    xr.requestSession('immersive-vr').then((session: XRSession) => {
-        console.log('success requesting XR session', session)
-        currentSession = session
-        renderer.xr.setSession(session)
-        vrb.onReady && vrb.onReady()
-    }).catch((err: Error) => {
-        console.log('error requesting XR session', err)
-        onNoVr()
-    })
 
     return () => cameras.currentCamera === cameras.perspectiveCamera ? exitPresent() : enterPresent()
 }
