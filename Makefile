@@ -3,3 +3,6 @@ publish:
 
 build:
 	npm build
+
+setup:
+	npm i
