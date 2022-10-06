@@ -6,9 +6,6 @@
     "type": "git",
     "url": "https://github.com/cmloegcmluin/vrb.git"
   },
-  "scripts": {
-    "build": "tsc"
-  },
   "keywords": [
     "vr",
     "virtual reality",
