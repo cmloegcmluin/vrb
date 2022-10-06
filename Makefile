@@ -1,5 +1,5 @@
 publish:
-	npm i && npm version patch && npm run build && npm publish --access public
+	npm i && npm version patch && make build && npm publish --access public
 
 build:
 	npx tsc
