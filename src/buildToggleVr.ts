@@ -1,5 +1,5 @@
-import vrb from './vrb'
-import { AttachToggleVrParameters } from './types'
+import vrb from "./vrb"
+import { AttachToggleVrParameters } from "./types"
 
 const buildToggleVr = ({ cameras, renderer, mouseControls, onNoVr }: AttachToggleVrParameters): VoidFunction => {
     // tslint:disable-next-line:no-any
@@ -14,7 +14,7 @@ const buildToggleVr = ({ cameras, renderer, mouseControls, onNoVr }: AttachToggl
     }
 
     const exitPresent = async () => {
-        console.log('someone is calling exit present')
+        console.log("someone is calling exit present")
         if (xr) {
             currentSession.end()
         } else {
@@ -25,21 +25,29 @@ const buildToggleVr = ({ cameras, renderer, mouseControls, onNoVr }: AttachToggl
     }
 
     const enterPresent = async () => {
-        console.log('someone is calling enter present')
+        console.log("someone is calling enter present")
 
-        xr.requestSession('immersive-vr').then(async (session: XRSession) => {
-            console.log('success requesting XR session', session)
+        xr.requestSession("immersive-vr").then(async (session: XRSession) => {
+            console.log("success requesting XR session", session)
             currentSession = session
-            await renderer.xr.setSession(session)
-            vrb.onReady && vrb.onReady()
+            
+            const referenceSpace = await session.requestReferenceSpace("local-floor")
+            console.log("here's an example reference space I guess... not sure what to do with it: ", referenceSpace)
+            
+            renderer.xr.setSession(session).then(async () => {
+                vrb.onReady && vrb.onReady()
 
-            await currentSession.requestPresent([{ source: renderer.domElement }])
-            console.log('success requesting VR present')
+                await currentSession.requestPresent([{ source: renderer.domElement }])
+                console.log("success requesting XR present")
 
-            mouseControls.enabled = false
-            cameras.currentCamera = cameras.perspectiveCamera
+                mouseControls.enabled = false
+                cameras.currentCamera = cameras.perspectiveCamera
+            }).catch((err: Error) => {
+                console.log("error *setting* XR session", err)
+                onNoVr()
+            })
         }).catch((err: Error) => {
-            console.log('error requesting XR session', err)
+            console.log("error requesting XR session", err)
             onNoVr()
         })
     }
