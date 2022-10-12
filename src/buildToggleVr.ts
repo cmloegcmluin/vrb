@@ -24,21 +24,18 @@ const buildToggleVr = ({ cameras, renderer, mouseControls, onNoVr }: AttachToggl
         cameras.currentCamera = cameras.orthographicCamera
     }
 
+    const mode = "immersive-vr"
+    const sessionInit = { optionalFeatures: ["local-floor", "bounded-floor", "hand-tracking", "layers"] }
+
     const enterPresent = async () => {
         console.log("someone is calling enter present")
 
-        xr.requestSession("immersive-vr").then(async (session: XRSession) => {
+        xr.requestSession(mode, sessionInit).then(async (session: XRSession) => {
             console.log("success requesting XR session", session)
             currentSession = session
-            
-            const referenceSpace = await session.requestReferenceSpace("local-floor")
-            console.log("here's an example reference space I guess... not sure what to do with it: ", referenceSpace)
-            
+
             renderer.xr.setSession(session).then(async () => {
                 vrb.onReady && vrb.onReady()
-
-                await currentSession.requestPresent([{ source: renderer.domElement }])
-                console.log("success requesting XR present")
 
                 mouseControls.enabled = false
                 cameras.currentCamera = cameras.perspectiveCamera
